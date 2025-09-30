@@ -478,23 +478,23 @@ body {
 
 .extension-name-badge {
     font-family: 'Courier New', monospace;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: lowercase;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.95);
     border-style: dashed !important;
     border-color: rgba(0, 0, 0, 0.30) !important;
     border-width: 2px;
-    width: auto;
-    margin: 20px;
-    padding: 15px;
+    border-radius: 12px;
     display: block;
-    text-align: center;
+    width: 100%;
+    margin: 0;
     color: #000;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .extension-name-badge:hover {
