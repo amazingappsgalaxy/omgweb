@@ -150,9 +150,9 @@ body {
 }
 
 .brand-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -330,8 +330,8 @@ body {
 
 /* Extension Logo */
 .extension-logo {
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
     border-radius: 20px;
     margin: 0 auto 8px;
     display: block;
@@ -408,7 +408,7 @@ body {
 
 .original-carousel .carousel-item img {
     width: 100%;
-    height: 250px;
+    height: auto;
     object-fit: cover;
     aspect-ratio: 2/1;
     image-rendering: optimizeQuality;
@@ -420,36 +420,37 @@ body {
 /* Carousel Controls - Circular like Original */
 .original-carousel .carousel-control-prev,
 .original-carousel .carousel-control-next {
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
+    width: auto;
+    height: auto;
+    background: none;
     border: none;
-    top: 50%;
-    transform: translateY(-50%);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    padding: 8px;
 }
 
 .original-carousel .carousel-control-prev {
-    left: 15px;
+    left: 10px;
+    top: 50%;
+    transform: translateY(calc(-50% - 25px));
 }
 
 .original-carousel .carousel-control-next {
-    right: 15px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(calc(-50% - 25px));
 }
 
 .original-carousel .carousel-control-prev:hover,
 .original-carousel .carousel-control-next:hover {
-    background: rgba(0, 0, 0, 0.9);
-    transform: translateY(-50%) scale(1.05);
-    transition: all 0.3s ease;
+    opacity: 1;
 }
 
 .carousel-nav-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     color: white;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 /* Carousel Indicators */
@@ -472,6 +473,48 @@ body {
     background: white;
     border-color: white;
     transform: scale(1.2);
+}
+
+/* Carousel Thumbnails */
+.carousel-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 15px;
+    padding: 0 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-thumbnail {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    background: #f8f9fa;
+    flex-shrink: 0;
+}
+
+.carousel-thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-thumbnail.active {
+    opacity: 1;
+    border-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Extension Name Badge */
@@ -667,8 +710,8 @@ body {
     }
 
     .extension-logo {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 
     .category-filters {
@@ -722,8 +765,8 @@ body {
     }
 
     .extension-logo {
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
     }
 }
 

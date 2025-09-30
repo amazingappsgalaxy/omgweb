@@ -148,12 +148,17 @@ class PremiumAppV2 {
 
     createOriginalCarouselHtml(extension) {
         const carouselId = `carousel-${extension.id}`;
+        const hasMultipleImages = extension.screenshots.length > 1;
 
-        const indicators = extension.screenshots.map((_, i) => `
-            <button type="button" data-bs-target="#${carouselId}" data-bs-slide-to="${i}"
-                    class="${i === 0 ? 'active' : ''}" aria-current="${i === 0 ? 'true' : 'false'}"
-                    aria-label="Slide ${i + 1}"></button>
-        `).join('');
+        // Create thumbnail navigation instead of dots
+        const thumbnails = hasMultipleImages ? extension.screenshots.map((screenshot, i) => `
+            <img src="${screenshot}"
+                 alt="${extension.name} Thumbnail ${i + 1}"
+                 class="carousel-thumbnail ${i === 0 ? 'active' : ''}"
+                 data-bs-target="#${carouselId}"
+                 data-bs-slide-to="${i}"
+                 loading="lazy">
+        `).join('') : '';
 
         const slides = extension.screenshots.map((screenshot, i) => `
             <div class="carousel-item ${i === 0 ? 'active' : ''}">
@@ -161,26 +166,35 @@ class PremiumAppV2 {
             </div>
         `).join('');
 
+        // Only show controls and thumbnails if there are multiple images
+        const controls = hasMultipleImages ? `
+            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                <svg width="32" height="32" viewBox="0 0 32 32" class="carousel-nav-icon">
+                    <path d="M22,2L9,16,22,30" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                <svg width="32" height="32" viewBox="0 0 32 32" class="carousel-nav-icon">
+                    <path d="M10,2l13,14-13,14" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="visually-hidden">Next</span>
+            </button>
+        ` : '';
+
+        const thumbnailsSection = hasMultipleImages ? `
+            <div class="carousel-thumbnails">
+                ${thumbnails}
+            </div>
+        ` : '';
+
         return `
             <div id="${carouselId}" class="carousel slide original-carousel" data-bs-ride="carousel" data-bs-interval="4000">
-                <div class="carousel-indicators">
-                    ${indicators}
-                </div>
                 <div class="carousel-inner">
                     ${slides}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
-                    <svg width="32" height="32" viewBox="0 0 32 32" class="carousel-nav-icon">
-                        <path d="M22,2L9,16,22,30" stroke="currentColor" stroke-width="2" fill="none"/>
-                    </svg>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
-                    <svg width="32" height="32" viewBox="0 0 32 32" class="carousel-nav-icon">
-                        <path d="M10,2l13,14-13,14" stroke="currentColor" stroke-width="2" fill="none"/>
-                    </svg>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                ${controls}
+                ${thumbnailsSection}
             </div>
         `;
     }
@@ -202,6 +216,9 @@ class PremiumAppV2 {
 
             // Add touch support enhancements
             this.addTouchSupport(carousel, bsCarousel);
+
+            // Add thumbnail click functionality
+            this.setupThumbnailNavigation(carousel, bsCarousel);
         });
     }
 
@@ -270,6 +287,31 @@ class PremiumAppV2 {
         // Pause on hover
         carousel.addEventListener('mouseenter', () => bsCarousel.pause());
         carousel.addEventListener('mouseleave', () => bsCarousel.cycle());
+    }
+
+    setupThumbnailNavigation(carousel, bsCarousel) {
+        const thumbnails = carousel.querySelectorAll('.carousel-thumbnail');
+
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(thumb => thumb.classList.remove('active'));
+
+                // Add active class to clicked thumbnail
+                thumbnail.classList.add('active');
+
+                // Navigate to the corresponding slide
+                bsCarousel.to(index);
+            });
+        });
+
+        // Update thumbnail active state when carousel slides change
+        carousel.addEventListener('slide.bs.carousel', (event) => {
+            const activeIndex = event.to;
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === activeIndex);
+            });
+        });
     }
 
 }
