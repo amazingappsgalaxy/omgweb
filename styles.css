@@ -478,21 +478,23 @@ body {
 
 .extension-name-badge {
     font-family: 'Courier New', monospace;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: lowercase;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px dotted rgba(0, 0, 0, 0.6);
-    border-radius: 12px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border-style: dashed !important;
+    border-color: rgba(0, 0, 0, 0.30) !important;
+    border-width: 2px;
+    width: auto;
+    margin: 20px;
+    padding: 15px;
     display: block;
-    width: 100%;
-    margin: 0;
+    text-align: center;
     color: #000;
     transition: all 0.3s ease;
     box-sizing: border-box;
-    text-align: center;
 }
 
 .extension-name-badge:hover {
@@ -537,11 +539,11 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
+    gap: 4px;
+    padding: 6px 12px;
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Arvo', serif;
@@ -549,7 +551,7 @@ body {
     color: #161616;
     min-width: auto;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    font-size: 12px;
+    font-size: 10px;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -676,14 +678,14 @@ body {
 
     .category-btn {
         min-width: auto;
-        padding: 6px 12px;
-        font-size: 10px;
-        gap: 4px;
-        border-radius: 16px;
+        padding: 4px 8px;
+        font-size: 9px;
+        gap: 3px;
+        border-radius: 12px;
     }
     .category-filters {
-        gap: 6px;
-        padding: 8px 16px;
+        gap: 4px;
+        padding: 8px 12px;
         overflow-y: visible;
     }
 
