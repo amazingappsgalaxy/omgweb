@@ -139,7 +139,15 @@ class PremiumAppV2 {
                 ${carouselHtml}
             </div>
             <div class="extension-name-container">
-                <span class="extension-name-badge">${extension.id}</span>
+                <div class="extension-name-badge">
+                    <span class="id-text">${extension.id}</span>
+                    <button class="copy-id-btn" onclick="window.copyExtensionId('${extension.id}', this)" data-id="${extension.id}" title="Copy ID to clipboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         `;
 
@@ -320,3 +328,57 @@ class PremiumAppV2 {
 document.addEventListener('DOMContentLoaded', () => {
     new PremiumAppV2();
 });
+
+// Global copy function
+window.copyExtensionId = async function(id, button) {
+    try {
+        await navigator.clipboard.writeText(id);
+        showCopyToast();
+    } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = id;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showCopyToast();
+    }
+};
+
+// Show toast notification
+function showCopyToast() {
+    // Remove existing toast if any
+    const existingToast = document.querySelector('.copy-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'copy-toast';
+    toast.innerHTML = `
+        <div class="toast-content">
+            <span class="toast-text">Copied 👍</span>
+            <span class="toast-subtext">Paste it in your extensions to import it</span>
+        </div>
+    `;
+
+    // Add to body
+    document.body.appendChild(toast);
+
+    // Trigger animation
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+
+    // Remove after delay
+    setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 300);
+    }, 3000);
+};
