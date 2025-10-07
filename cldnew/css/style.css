@@ -566,7 +566,7 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(251, 191, 36, 0.3);
     border-radius: 50%;
-    position: fixed;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
@@ -1368,11 +1368,11 @@ body {
     }
 
     .hero-slider-section .swiper-button-prev {
-        left: -10px;
+        left: 15px;
     }
 
     .hero-slider-section .swiper-button-next {
-        right: -10px;
+        right: 15px;
     }
 
     .swiper-button-prev::after,

@@ -123,8 +123,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Loop
         loop: true,
 
-        // Autoplay - DISABLED FOR TESTING
-        autoplay: false,
+        // Autoplay
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
 
         // Pagination
         pagination: {
