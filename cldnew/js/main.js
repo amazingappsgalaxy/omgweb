@@ -145,38 +145,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('OMG Browser - Slider initialized ✓');
 
-    // Hide/show navigation buttons based on scroll position (desktop only)
+    // ============================================
+    // Navigation Button Visibility Control (Desktop)
+    // ============================================
+
     const heroSection = document.querySelector('.hero-slider-section');
     const navButtons = document.querySelectorAll('.hero-slider-section .swiper-button-prev, .hero-slider-section .swiper-button-next');
 
-    if (heroSection && navButtons.length > 0) {
-        window.addEventListener('scroll', function() {
-            // Only apply this behavior on desktop (width > 768px)
-            if (window.innerWidth > 768) {
-                const heroRect = heroSection.getBoundingClientRect();
-                const isHeroInView = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+    // Hide/show navigation buttons based on hero section visibility (desktop only)
+    function updateNavButtonsVisibility() {
+        // Only apply on desktop
+        if (window.innerWidth > 768 && heroSection && navButtons.length > 0) {
+            const heroRect = heroSection.getBoundingClientRect();
+            const scrolled = window.pageYOffset;
 
-                navButtons.forEach(btn => {
-                    if (isHeroInView) {
-                        btn.style.opacity = '1';
-                        btn.style.pointerEvents = 'auto';
-                    } else {
-                        btn.style.opacity = '0';
-                        btn.style.pointerEvents = 'none';
-                    }
-                });
-            } else {
-                // On mobile, always show buttons
-                navButtons.forEach(btn => {
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                });
-            }
-        });
+            // Show buttons only when hero section is in viewport
+            // Hide when: hero section is completely above viewport (heroRect.bottom <= 0)
+            // OR hero section is completely below viewport (heroRect.top >= window.innerHeight)
+            const isHeroInView = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+
+            navButtons.forEach(btn => {
+                if (isHeroInView) {
+                    btn.style.display = 'flex';
+                    btn.style.visibility = 'visible';
+                } else {
+                    btn.style.display = 'none';
+                    btn.style.visibility = 'hidden';
+                }
+            });
+        } else if (navButtons.length > 0) {
+            // On mobile, always show
+            navButtons.forEach(btn => {
+                btn.style.display = 'flex';
+                btn.style.visibility = 'visible';
+            });
+        }
     }
 
+    // Update on scroll
+    window.addEventListener('scroll', updateNavButtonsVisibility, { passive: true });
+    // Update on resize
+    window.addEventListener('resize', updateNavButtonsVisibility, { passive: true });
+    // Initial update
+    updateNavButtonsVisibility();
+
     // ============================================
-    // Random Emoji Tilts
+    // Random Emoji Tilts & Parallax Setup
     // ============================================
 
     // Get all emojis and add random tilts (max 45 degrees)

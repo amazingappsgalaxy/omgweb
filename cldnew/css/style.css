@@ -922,11 +922,11 @@ body {
     }
 
     .hero-slider-section .swiper-button-prev {
-        left: 5px;
+        left: -10px;
     }
 
     .hero-slider-section .swiper-button-next {
-        right: 5px;
+        right: -10px;
     }
 
     .swiper-button-prev::after,
