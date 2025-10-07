@@ -14,7 +14,7 @@
         return clean;
     }
 
-    function createEmojiRain(emojiSrc, startX, startY) {
+    function createEmojiRain(emojiSrc) {
         const now = Date.now();
         // Minimal throttle to avoid overwhelming DOM
         if (now - lastStartTime < 120) return;
@@ -26,68 +26,115 @@
             return;
         }
 
-        const emojiCount = 40;
-        const baseSize = window.innerWidth <= 480 ? 42 : window.innerWidth <= 768 ? 52 : 60;
+        // GSAP-based vertical rain animation inspired by reference implementation
+        // Reduce quantity to improve smoothness
+        const emojiQuantity = 30;
 
-        for (let i = 0; i < emojiCount; i++) {
-            const particle = document.createElement('div');
-            const size = baseSize * (0.65 + Math.random() * 0.6);
+        const containerRect = container.getBoundingClientRect();
+        const containerHeight = containerRect.height || window.innerHeight;
 
-            particle.style.cssText = `
-                position: fixed;
-                left: ${startX - size / 2}px;
-                top: ${startY - size / 2}px;
-                width: ${size}px;
-                height: ${size}px;
-                background-image: url("${emojiSrc}");
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                pointer-events: none;
-                z-index: 10000;
-                opacity: 1;
-            `;
-            container.appendChild(particle);
+        for (let i = 0; i < emojiQuantity; i++) {
+            const singleEmoji = document.createElement('div');
+            singleEmoji.className = 'single-rain-emoji';
+            singleEmoji.style.position = 'absolute';
+            singleEmoji.style.top = '0';
+            // Distribute across ~10 lanes
+            const lane = Math.floor(Math.random() * 11); // 0-10
+            const leftPercent = 5 + lane * 9; // ~5% to ~95%
+            singleEmoji.style.left = leftPercent + '%';
+            singleEmoji.style.pointerEvents = 'none';
+            singleEmoji.style.zIndex = '10000';
+            singleEmoji.style.willChange = 'transform';
 
-            // Randomized burst vector
-            const angle = (Math.random() * Math.PI * 2);
-            const distance = 80 + Math.random() * 160;
-            const driftX = Math.cos(angle) * distance;
-            const driftY = Math.sin(angle) * distance;
+            // Create a wave wrapper to avoid transform conflicts (parent rise, wrapper wave, child sway)
+            const waveWrapper = document.createElement('div');
+            waveWrapper.className = 'emoji-wave-wrapper';
+            singleEmoji.appendChild(waveWrapper);
 
-            const fallX = driftX * (0.25 + Math.random() * 0.5);
-            const fallY = 280 + Math.random() * 280;
-            const rot = (-90 + Math.random() * 180) * (Math.random() < 0.5 ? -1 : 1);
+            const singleEmojiChild = document.createElement('div');
+            singleEmojiChild.className = 'single-rain-emoji-image';
+            singleEmojiChild.style.backgroundImage = `url("${emojiSrc}")`;
+            waveWrapper.appendChild(singleEmojiChild);
 
-            const burstDur = 0.55 + Math.random() * 0.25;
-            const fallDur = 1.1 + Math.random() * 0.6;
+            container.appendChild(singleEmoji);
+
+            // Enforce larger sizes inline using 10 fixed size buckets (low variation, consistent)
+            const baseSize = window.innerWidth <= 480 ? 150 : window.innerWidth <= 768 ? 180 : 240;
+            const sizeFactors = [0.60, 0.68, 0.76, 0.84, 0.92, 1.00, 1.08, 1.16, 1.24, 1.32];
+            const factor = sizeFactors[Math.floor(Math.random() * sizeFactors.length)];
+            const finalSize = Math.round(baseSize * factor);
+            singleEmoji.style.width = finalSize + 'px';
+            singleEmoji.style.height = finalSize + 'px';
+            const singleEmojiWidth = finalSize;
+
+            // Random props mirroring the reference
+            const emojiDelay = 0.001 * Math.floor(Math.random() * 1251); // 0 - 1.25s
+            const emojiSpeed = (Math.floor(Math.random() * (2200 - 1200 + 1)) + 1200) * 0.001; // 1.2 - 2.2s
+            // Keep scale constant; size variation comes from fixed buckets
+            const emojiScale = 1.0;
+            const emojiRotate = (Math.floor(Math.random() * 51) - 25) * 0.4; // ~-10 to 10 deg
 
             if (window.gsap) {
-                const tl = gsap.timeline({ onComplete: () => particle.remove() });
-                tl.to(particle, {
-                    x: driftX,
-                    y: driftY * -0.6,
-                    rotation: rot * 0.6,
-                    ease: 'power3.out',
-                    duration: burstDur
-                }).to(particle, {
-                    x: `+=${fallX}`,
-                    y: `+=${fallY}`,
-                    rotation: `+=${rot}`,
+                // Improve performance: force3D and smooth ease
+                gsap.set(singleEmoji, { force3D: true });
+                gsap.set(singleEmojiChild, { force3D: true, transformOrigin: '50% 50%' });
+                // Vertical movement from bottom to above top
+                const riseTween = gsap.fromTo(singleEmoji, {
+                    y: containerHeight,
+                    xPercent: -50,
+                    scale: emojiScale
+                }, {
+                    y: -singleEmojiWidth,
+                    duration: emojiSpeed,
+                    delay: emojiDelay,
                     ease: 'power1.in',
-                    duration: fallDur
+                    overwrite: 'auto',
+                    force3D: true,
+                    onComplete: () => {
+                        // Clean up CSS sway indicator and element
+                        if (singleEmojiChild.__swayTween) {
+                            singleEmojiChild.__swayTween.kill();
+                            singleEmojiChild.__swayTween = null;
+                        }
+                        singleEmoji.remove();
+                    }
                 });
+
+                // CSS wave on wrapper to avoid concurrent transform authors
+                const waveAmp = 14 + Math.random() * 14; // 14-28px
+                const waveDur = 1.6 + Math.random() * 0.8; // 1.6-2.4s
+                waveWrapper.style.setProperty('--wave-amp', `${waveAmp}px`);
+                waveWrapper.style.setProperty('--wave-duration', `${waveDur}s`);
+                waveWrapper.classList.add('emoji-wave');
+
+                // Use CSS sway to reduce JS-driven jitter
+                singleEmojiChild.classList.add('emoji-sway');
             } else {
-                const anim = particle.animate([
-                    { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-                    { transform: `translate(${driftX}px, ${driftY * -0.6}px) rotate(${rot * 0.6}deg)`, opacity: 1 },
-                    { transform: `translate(${driftX + fallX}px, ${(driftY * -0.6) + fallY}px) rotate(${rot * 1.6}deg)`, opacity: 1 }
+                // Fallback using WA-API: approximate vertical rise and simple sway
+                const rise = singleEmoji.animate([
+                    { transform: `translate(-50%, ${containerHeight}px) scale(${emojiScale})` },
+                    { transform: `translate(-50%, ${-singleEmojiWidth}px) scale(${emojiScale})` }
                 ], {
-                    duration: (burstDur + fallDur) * 1000,
-                    easing: 'ease-in-out',
+                    duration: emojiSpeed * 1000,
+                    delay: emojiDelay * 1000,
+                    easing: 'ease-in',
                     fill: 'forwards'
                 });
-                anim.onfinish = () => particle.remove();
+
+                // CSS sway instead of WA-API for performance
+                singleEmojiChild.classList.add('emoji-sway');
+
+                // CSS wave on wrapper
+                const waveAmp = 14 + Math.random() * 14; // 14-28px
+                const waveDur = 1.6 + Math.random() * 0.8; // 1.6-2.4s
+                waveWrapper.style.setProperty('--wave-amp', `${waveAmp}px`);
+                waveWrapper.style.setProperty('--wave-duration', `${waveDur}s`);
+                waveWrapper.classList.add('emoji-wave');
+
+                rise.onfinish = () => {
+                    singleEmojiChild.classList.remove('emoji-sway');
+                    singleEmoji.remove();
+                };
             }
         }
     }
@@ -114,10 +161,7 @@
 
         emojiSrc = sanitizeSrc(emojiSrc);
         if (emojiSrc) {
-            const rect = element.getBoundingClientRect();
-            const startX = rect.left + rect.width / 2;
-            const startY = rect.top + rect.height / 2;
-            createEmojiRain(emojiSrc, startX, startY);
+            createEmojiRain(emojiSrc);
         } else {
             console.error('No emoji src found');
         }
