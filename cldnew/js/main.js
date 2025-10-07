@@ -4,6 +4,27 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    // ============================================
+    // Google Play Store Button - Toast Notification
+    // ============================================
+
+    const playStoreBtn = document.getElementById('playStoreBtn');
+    const toast = document.getElementById('toast');
+
+    if (playStoreBtn && toast) {
+        playStoreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Show toast
+            toast.classList.add('show');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        });
+    }
+
     // Slide titles
     const titles = [
         'Grab any video on a website and play it natively',

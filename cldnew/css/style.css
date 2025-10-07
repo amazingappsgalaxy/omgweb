@@ -639,6 +639,75 @@ body {
 }
 
 /* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+
+.toast {
+    position: fixed;
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--amber) 0%, #f59e0b 100%);
+    color: var(--black);
+    padding: 20px 36px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 17px;
+    z-index: 10000;
+    transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+    max-width: 90vw;
+}
+
+.toast.show {
+    bottom: 60px;
+}
+
+.toast span {
+    font-size: 28px;
+    flex-shrink: 0;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.toast p {
+    margin: 0;
+    color: var(--black);
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .toast {
+        padding: 16px 24px;
+        font-size: 14px;
+        border-radius: 40px;
+        white-space: normal;
+        text-align: center;
+        max-width: 280px;
+    }
+
+    .toast span {
+        font-size: 24px;
+    }
+
+    .toast.show {
+        bottom: 30px;
+    }
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 
@@ -693,13 +762,36 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE - TABLET
+   RESPONSIVE - LARGE DESKTOP
    ============================================ */
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
     .hero-container {
-        padding: 0 40px;
+        padding: 0 80px;
+        gap: 60px;
+    }
+
+    .hero-text {
+        min-width: 450px;
+    }
+
+    .hero-title {
+        font-size: 56px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - MEDIUM DESKTOP
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .hero-container {
+        padding: 0 60px;
         gap: 50px;
+    }
+
+    .hero-text {
+        min-width: 400px;
     }
 
     .hero-title {
@@ -707,7 +799,30 @@ body {
     }
 
     .slide-screenshot {
-        height: 65vh;
+        max-height: calc(100vh - 220px);
+    }
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .hero-container {
+        padding: 0 40px;
+        gap: 40px;
+    }
+
+    .hero-text {
+        min-width: 350px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+    }
+
+    .slide-screenshot {
+        max-height: calc(100vh - 240px);
     }
 
     .emoji-1, .emoji-2, .emoji-3, .emoji-5 {
@@ -718,6 +833,27 @@ body {
     .emoji-4 {
         width: 110px;
         height: 110px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-container {
+        padding: 0 30px;
+        gap: 30px;
+    }
+
+    .hero-text {
+        min-width: 300px;
+        max-width: 500px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .btn {
+        padding: 14px 28px;
+        font-size: 14px;
     }
 }
 
