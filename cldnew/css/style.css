@@ -1,5 +1,5 @@
 /* ============================================
-   OMG Browser - Large Screenshot Design
+   OMG Browser - Professional Design
    ============================================ */
 
 * {
@@ -10,352 +10,577 @@
 
 :root {
     --amber: #fbbf24;
-    --amber-dark: #f59e0b;
     --black: #000000;
+    --gray: #111111;
     --text: #ffffff;
-    --text-muted: #9ca3af;
+    --text-dim: #666666;
 }
 
 html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     background: var(--black);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
 }
 
 /* ============================================
-   FULL-SCREEN HERO SLIDER
+   HEADER - Glassmorphism
+   ============================================ */
+
+.main-header {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: calc(100% - 40px);
+    max-width: 1400px;
+}
+
+.header-container {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.header-download-btn {
+    background: var(--amber);
+    color: var(--black);
+    padding: 10px 26px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.header-download-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   HERO SLIDER - HUGE SCREENSHOTS
    ============================================ */
 
 .hero-slider-section {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    min-height: 100vh;
     position: relative;
     background: var(--black);
-    overflow: hidden;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 120px;
+    gap: 80px;
+    margin: 0 auto;
+}
+
+/* Left: Text (Fixed) */
+.hero-text {
+    flex: 1.2;
+    max-width: 700px;
+    min-width: 550px;
+    z-index: 10;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* Right: Visual Slider Wrapper */
+.hero-visual-wrapper {
+    flex: 0.9;
+    position: relative;
+    height: calc(100vh - 180px);
+    min-height: 500px;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
 }
 
 .hero-swiper {
     width: 100%;
     height: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+.swiper-wrapper {
+    height: 100%;
+    width: 100%;
 }
 
 .swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--black);
-    position: relative;
-    padding: 0;
-}
-
-/* Slide Content - Centered Layout */
-.slide-content {
-    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 40px 20px;
-}
-
-/* Text positioned at top or bottom */
-.slide-text {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
-    max-width: 900px;
-    width: 90%;
-}
-
-.slide-logo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 30px;
-    filter: drop-shadow(0 0 40px rgba(251, 191, 36, 0.6));
-    display: block;
-}
-
-.slide-title {
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    color: var(--text);
-    letter-spacing: -0.02em;
-}
-
-.slide-description {
-    font-size: 20px;
-    line-height: 1.5;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Buttons */
-.slide-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    width: 100%;
 }
 
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px 50px;
-    font-size: 18px;
+    padding: 18px 40px;
+    font-size: 17px;
     font-weight: 700;
     border-radius: 100px;
     text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
+    transition: transform 0.2s;
+    display: inline-block;
 }
 
 .btn-primary {
     background: var(--amber);
     color: var(--black);
-    box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4);
 }
 
 .btn-primary:hover {
-    background: #fcd34d;
     transform: translateY(-2px);
-    box-shadow: 0 15px 50px rgba(251, 191, 36, 0.6);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--amber);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
-/* HUGE Screenshot - Centered */
+/* Visual Content */
 .slide-visual {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .slide-screenshot {
+    max-height: calc(100vh - 180px);
+    height: auto;
     width: auto;
-    height: 75vh;
-    max-height: 800px;
-    max-width: 90vw;
+    max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.9));
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.8));
+    display: block;
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeInScale 0.6s ease-out forwards;
 }
 
-/* Floating 3D Emojis - Around viewport edges */
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Emojis - Strategically Positioned with Proper Layering */
 .floating-emoji {
-    position: fixed;
+    position: absolute;
     pointer-events: none;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+    z-index: 1; /* Behind text/buttons by default */
+    opacity: 0;
+    animation: fadeInEmoji 0.8s ease-out forwards;
+}
+
+@keyframes fadeInEmoji {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Stagger emoji animations */
+.floating-emoji.emoji-1 {
+    animation-delay: 0.2s;
+}
+
+.floating-emoji.emoji-2 {
+    animation-delay: 0.3s;
+}
+
+.floating-emoji.emoji-3 {
+    animation-delay: 0.4s;
+}
+
+.floating-emoji.emoji-4 {
+    animation-delay: 0.5s;
+}
+
+.floating-emoji.emoji-5 {
+    animation-delay: 0.6s;
+}
+
+/* Background emojis - large and blurred for depth */
+.bg-emoji {
+    filter: blur(8px);
+    z-index: 0;
+    animation: fadeInBg 1s ease-out forwards;
+}
+
+@keyframes fadeInBg {
+    to {
+        opacity: 0.4;
+    }
+}
+
+.bg-emoji-1 {
+    animation-delay: 0.1s;
+}
+
+.bg-emoji-2 {
+    animation-delay: 0.15s;
+}
+
+/* Background emoji positions (same for all slides for consistency) */
+.bg-emoji-1 {
+    top: 10%;
+    left: -30%;
+    width: 220px;
+    height: 220px;
+}
+
+.bg-emoji-2 {
+    bottom: 5%;
+    right: -15%;
+    width: 200px;
+    height: 200px;
+}
+
+/* ========== SLIDE 1 - Play Videos ========== */
+/* Large emoji overlapping top-left */
+[data-swiper-slide-index="0"] .emoji-1 {
+    top: -10%;
+    left: -5%;
+    width: 160px;
+    height: 160px;
+    z-index: 3;
+}
+
+/* Medium emoji on right side */
+[data-swiper-slide-index="0"] .emoji-2 {
+    top: 15%;
+    right: -10%;
+    width: 140px;
+    height: 140px;
+    z-index: 1;
+}
+
+/* Large emoji half-overlapping bottom */
+[data-swiper-slide-index="0"] .emoji-3 {
+    bottom: 20%;
+    left: 0%;
+    width: 170px;
+    height: 170px;
+    z-index: 3;
+}
+
+/* Extra large OMG icon bottom-right */
+[data-swiper-slide-index="0"] .emoji-4 {
+    bottom: -5%;
+    right: -8%;
+    width: 200px;
+    height: 200px;
     z-index: 2;
 }
 
-.emoji-1 {
+/* Medium emoji middle-right */
+[data-swiper-slide-index="0"] .emoji-5 {
+    top: 50%;
+    right: -6%;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+}
+
+/* ========== SLIDE 2 - Extension Support ========== */
+/* Large emoji top-right */
+[data-swiper-slide-index="1"] .emoji-1 {
+    top: -8%;
+    right: -7%;
+    width: 150px;
+    height: 150px;
+    z-index: 3;
+}
+
+/* Extra large emoji overlapping top-left */
+[data-swiper-slide-index="1"] .emoji-2 {
     top: 5%;
-    left: 5%;
+    left: -8%;
     width: 180px;
     height: 180px;
-    animation: float1 6s ease-in-out infinite;
+    z-index: 3;
 }
 
-.emoji-2 {
-    top: 8%;
-    right: 8%;
-    width: 160px;
-    height: 160px;
-    animation: float2 7s ease-in-out infinite;
-}
-
-.emoji-3 {
-    bottom: 25%;
+/* Large emoji bottom far-left */
+[data-swiper-slide-index="1"] .emoji-3 {
+    bottom: 30%;
     left: 3%;
-    width: 140px;
-    height: 140px;
-    animation: float3 5.5s ease-in-out infinite;
+    width: 165px;
+    height: 165px;
+    z-index: 1;
 }
 
-.emoji-4 {
-    bottom: 5%;
-    right: 5%;
-    width: 200px;
-    height: 200px;
-    animation: float4 8s ease-in-out infinite;
+/* Huge OMG icon bottom-left */
+[data-swiper-slide-index="1"] .emoji-4 {
+    bottom: -8%;
+    left: -12%;
+    width: 220px;
+    height: 220px;
+    z-index: 2;
 }
 
-.emoji-5 {
-    top: 50%;
-    right: 2%;
+/* Medium emoji right-middle */
+[data-swiper-slide-index="1"] .emoji-5 {
+    top: 55%;
+    right: -5%;
     width: 130px;
     height: 130px;
-    animation: float5 6.5s ease-in-out infinite;
+    z-index: 1;
 }
 
-@keyframes float1 {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(10deg); }
+/* ========== SLIDE 3 - Video Player ========== */
+/* Large emoji top-left corner */
+[data-swiper-slide-index="2"] .emoji-1 {
+    top: -5%;
+    left: -10%;
+    width: 175px;
+    height: 175px;
+    z-index: 3;
 }
 
-@keyframes float2 {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-25px) rotate(-8deg); }
+/* Medium emoji right-top */
+[data-swiper-slide-index="2"] .emoji-2 {
+    top: 20%;
+    right: -4%;
+    width: 135px;
+    height: 135px;
+    z-index: 1;
 }
 
-@keyframes float3 {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-35px) rotate(12deg); }
+/* Huge emoji bottom-right */
+[data-swiper-slide-index="2"] .emoji-3 {
+    bottom: -10%;
+    right: -12%;
+    width: 210px;
+    height: 210px;
+    z-index: 2;
 }
 
-@keyframes float4 {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(-10deg); }
+/* Extra large OMG icon left-middle */
+[data-swiper-slide-index="2"] .emoji-4 {
+    bottom: 25%;
+    left: -6%;
+    width: 190px;
+    height: 190px;
+    z-index: 3;
 }
 
-@keyframes float5 {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-28px) rotate(7deg); }
+/* Medium emoji top-middle */
+[data-swiper-slide-index="2"] .emoji-5 {
+    top: 8%;
+    left: 20%;
+    width: 125px;
+    height: 125px;
+    z-index: 1;
 }
 
-/* Swiper Navigation */
-.swiper-button-prev,
-.swiper-button-next {
+/* ========== SLIDE 4 - Ad Blocker ========== */
+/* Huge emoji bottom-left overlapping */
+[data-swiper-slide-index="3"] .emoji-1 {
+    bottom: 10%;
+    left: -8%;
+    width: 195px;
+    height: 195px;
+    z-index: 3;
+}
+
+/* Large emoji right-middle */
+[data-swiper-slide-index="3"] .emoji-2 {
+    top: 40%;
+    right: -9%;
+    width: 155px;
+    height: 155px;
+    z-index: 1;
+}
+
+/* Medium emoji top-right */
+[data-swiper-slide-index="3"] .emoji-3 {
+    top: 0%;
+    right: 5%;
+    width: 140px;
+    height: 140px;
+    z-index: 1;
+}
+
+/* Large OMG icon top-left */
+[data-swiper-slide-index="3"] .emoji-4 {
+    top: -7%;
+    left: -5%;
+    width: 170px;
+    height: 170px;
+    z-index: 3;
+}
+
+/* Extra large emoji bottom-right */
+[data-swiper-slide-index="3"] .emoji-5 {
+    bottom: -6%;
+    right: -10%;
+    width: 185px;
+    height: 185px;
+    z-index: 2;
+}
+
+/* Navigation - Positioned at container edges */
+.hero-slider-section .swiper-button-prev,
+.hero-slider-section .swiper-button-next {
     color: var(--amber) !important;
-    width: 80px !important;
-    height: 80px !important;
-    background: rgba(251, 191, 36, 0.1);
-    border-radius: 50%;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(251, 191, 36, 0.3);
-    transition: all 0.3s ease;
-    z-index: 20;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.hero-slider-section .swiper-button-prev {
+    left: 40px;
+}
+
+.hero-slider-section .swiper-button-next {
+    right: 40px;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    background: rgba(251, 191, 36, 0.2);
-    border-color: var(--amber);
-    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .swiper-button-prev::after,
 .swiper-button-next::after {
-    font-size: 28px !important;
-    font-weight: 900;
+    font-size: 20px !important;
 }
 
-/* Swiper Pagination */
+/* Pagination - Hidden */
 .swiper-pagination {
-    bottom: 40px !important;
-    z-index: 20;
-}
-
-.swiper-pagination-bullet {
-    width: 14px !important;
-    height: 14px !important;
-    background: rgba(255, 255, 255, 0.3) !important;
-    opacity: 1 !important;
-    transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-    width: 50px !important;
-    border-radius: 7px !important;
-    background: var(--amber) !important;
-    box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+    display: none !important;
 }
 
 /* ============================================
-   FEATURES SECTION
+   FEATURES
    ============================================ */
 
 .features-section {
-    padding: 120px 30px;
+    padding: 100px 40px;
     background: var(--black);
 }
 
 .features-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .section-heading {
-    font-size: 56px;
-    font-weight: 900;
+    font-size: 48px;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     color: var(--text);
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .feature-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--gray);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 24px;
-    padding: 50px 40px;
+    border-radius: 20px;
+    padding: 40px 30px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: transform 0.2s;
 }
 
 .feature-card:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(251, 191, 36, 0.3);
-    transform: translateY(-8px);
+    transform: translateY(-5px);
+    border-color: rgba(251, 191, 36, 0.2);
 }
 
 .feature-icon {
-    font-size: 64px;
-    margin-bottom: 24px;
+    font-size: 48px;
+    margin-bottom: 20px;
 }
 
 .feature-card h3 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
 }
 
 .feature-card p {
-    color: var(--text-muted);
-    font-size: 17px;
-    line-height: 1.6;
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.5;
 }
 
 /* ============================================
@@ -363,9 +588,9 @@ body {
    ============================================ */
 
 .footer {
-    padding: 80px 30px 50px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px 30px 40px;
     background: var(--black);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-container {
@@ -375,30 +600,31 @@ body {
 }
 
 .footer-brand {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .footer-logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 16px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 12px;
 }
 
 .footer-brand p {
-    color: var(--text-muted);
+    color: var(--text-dim);
+    font-size: 14px;
 }
 
 .footer-links {
     display: flex;
-    gap: 40px;
+    gap: 30px;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .footer-links a {
-    color: var(--text-muted);
+    color: var(--text-dim);
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-size: 14px;
 }
 
 .footer-links a:hover {
@@ -406,100 +632,162 @@ body {
 }
 
 .footer-copyright {
-    color: var(--text-muted);
-    font-size: 15px;
-    opacity: 0.5;
+    color: var(--text-dim);
+    font-size: 13px;
+    opacity: 0.6;
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE - TABLET
    ============================================ */
 
 @media (max-width: 1024px) {
+    .hero-container {
+        padding: 0 40px;
+        gap: 50px;
+    }
+
+    .hero-title {
+        font-size: 52px;
+    }
+
     .slide-screenshot {
         height: 65vh;
     }
 
-    .slide-title {
-        font-size: 52px;
-    }
-
-    .floating-emoji {
-        width: 120px !important;
-        height: 120px !important;
+    .emoji-1, .emoji-2, .emoji-3, .emoji-5 {
+        width: 80px;
+        height: 80px;
     }
 
     .emoji-4 {
-        width: 150px !important;
-        height: 150px !important;
+        width: 110px;
+        height: 110px;
     }
 }
 
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+
 @media (max-width: 768px) {
-    .slide-text {
-        bottom: 120px;
-        width: 95%;
+    .main-header {
+        top: 10px;
+        width: calc(100% - 20px);
     }
 
-    .slide-logo {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 20px;
+    .header-container {
+        padding: 10px 16px;
     }
 
-    .slide-title {
-        font-size: 36px;
-        margin-bottom: 15px;
+    .header-logo {
+        width: 30px;
+        height: 30px;
     }
 
-    .slide-description {
-        font-size: 17px;
-        margin-bottom: 30px;
+    .header-title {
+        font-size: 15px;
     }
 
-    .slide-screenshot {
-        height: 50vh;
-        max-height: 500px;
+    .header-download-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+
+    /* Stack layout on mobile */
+    .hero-container {
+        flex-direction: column;
+        padding: 100px 25px 100px;
+        gap: 40px;
+        justify-content: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        text-align: center;
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
     .btn {
-        padding: 18px 40px;
-        font-size: 17px;
+        padding: 15px 32px;
+        font-size: 15px;
     }
 
-    .slide-buttons {
-        gap: 15px;
+    /* Visual slider on mobile */
+    .hero-visual-wrapper {
+        order: 1;
+        height: auto;
+        width: 100%;
     }
 
-    .floating-emoji {
-        width: 80px !important;
-        height: 80px !important;
+    .slide-visual {
+        height: auto;
     }
 
-    .emoji-1 { top: 3%; left: 2%; }
-    .emoji-2 { top: 5%; right: 2%; }
-    .emoji-3 { bottom: 30%; left: 1%; }
-    .emoji-4 { 
-        bottom: 3%; 
+    .slide-screenshot {
+        height: auto;
+        width: 70%;
+        max-width: 320px;
+    }
+
+    /* Emojis - only 2 emojis on mobile */
+    .emoji-1 {
+        top: 5%;
+        left: 2%;
+        width: 45px;
+        height: 45px;
+    }
+
+    .emoji-2 {
+        display: none;
+    }
+
+    .emoji-3 {
+        display: none;
+    }
+
+    .emoji-4 {
+        bottom: 5%;
         right: 2%;
-        width: 100px !important;
-        height: 100px !important;
+        width: 60px;
+        height: 60px;
     }
-    .emoji-5 { top: 45%; right: 1%; width: 70px !important; height: 70px !important; }
 
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 60px !important;
-        height: 60px !important;
+    .emoji-5 {
+        display: none;
+    }
+
+    .hero-slider-section .swiper-button-prev,
+    .hero-slider-section .swiper-button-next {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .hero-slider-section .swiper-button-prev {
+        left: 20px;
+    }
+
+    .hero-slider-section .swiper-button-next {
+        right: 20px;
     }
 
     .swiper-button-prev::after,
     .swiper-button-next::after {
-        font-size: 22px !important;
+        font-size: 16px !important;
     }
 
     .section-heading {
-        font-size: 40px;
+        font-size: 32px;
     }
 
     .features-grid {
@@ -508,65 +796,31 @@ body {
 }
 
 @media (max-width: 480px) {
-    .slide-text {
-        bottom: 100px;
+    .hero-container {
+        padding: 90px 15px 90px;
     }
 
-    .slide-logo {
-        width: 70px;
-        height: 70px;
-    }
-
-    .slide-title {
-        font-size: 30px;
-    }
-
-    .slide-description {
-        font-size: 16px;
-    }
-
-    .slide-screenshot {
-        height: 45vh;
+    .hero-title {
+        font-size: 26px;
     }
 
     .btn {
-        padding: 16px 36px;
-        font-size: 16px;
-        width: auto;
+        padding: 13px 28px;
+        font-size: 14px;
     }
 
-    .slide-buttons {
-        flex-direction: row;
-        gap: 12px;
+    .slide-screenshot {
+        width: 75%;
+        max-width: 280px;
     }
 
-    .floating-emoji {
-        width: 60px !important;
-        height: 60px !important;
+    .emoji-1 {
+        width: 40px;
+        height: 40px;
     }
 
     .emoji-4 {
-        width: 80px !important;
-        height: 80px !important;
-    }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 50px !important;
-        height: 50px !important;
-    }
-
-    .swiper-button-prev::after,
-    .swiper-button-next::after {
-        font-size: 18px !important;
-    }
-
-    .section-heading {
-        font-size: 32px;
-        margin-bottom: 50px;
-    }
-
-    .feature-card {
-        padding: 40px 30px;
+        width: 50px;
+        height: 50px;
     }
 }
