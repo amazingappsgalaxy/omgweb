@@ -229,4 +229,28 @@ document.addEventListener('DOMContentLoaded', function() {
         emoji.style.setProperty('--emoji-rotation', `${randomRotation}deg`);
     });
 
+    // ============================================
+    // Feature Icons Animation on Scroll
+    // ============================================
+
+    const featureIcons = document.querySelectorAll('.feature-icon');
+
+    const observerOptions = {
+        threshold: 0.2, // Trigger when 20% of the element is visible
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    featureIcons.forEach(icon => {
+        observer.observe(icon);
+    });
+
 });
