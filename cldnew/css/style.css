@@ -639,6 +639,153 @@ body {
 }
 
 /* ============================================
+   DOWNLOAD CTA SECTION
+   ============================================ */
+
+.download-cta-section {
+    padding: 120px 40px;
+    background: linear-gradient(180deg, var(--black) 0%, var(--gray) 100%);
+    text-align: center;
+}
+
+.download-cta-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.download-cta-title {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--amber) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.download-cta-subtitle {
+    font-size: 20px;
+    color: var(--text-dim);
+    margin-bottom: 60px;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.stat-card {
+    text-align: center;
+    position: relative;
+}
+
+.stat-card:not(:last-child)::after {
+    content: '|';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 24px;
+    opacity: 0.3;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+.download-cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsive for Download CTA */
+@media (max-width: 768px) {
+    .download-cta-section {
+        padding: 80px 30px;
+    }
+
+    .download-cta-title {
+        font-size: 36px;
+    }
+
+    .download-cta-subtitle {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .stats-grid {
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card:not(:last-child)::after {
+        right: -20px;
+        font-size: 20px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    .stat-label {
+        font-size: 13px;
+    }
+
+    .download-cta-buttons .btn {
+        padding: 16px 50px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-cta-section {
+        padding: 60px 20px;
+    }
+
+    .download-cta-title {
+        font-size: 28px;
+    }
+
+    .download-cta-subtitle {
+        font-size: 15px;
+    }
+
+    .stats-grid {
+        gap: 30px;
+    }
+
+    .stat-card:not(:last-child)::after {
+        right: -15px;
+        font-size: 18px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+}
+
+/* ============================================
    TOAST NOTIFICATION
    ============================================ */
 

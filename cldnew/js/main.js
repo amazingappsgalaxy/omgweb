@@ -9,20 +9,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================================
 
     const playStoreBtn = document.getElementById('playStoreBtn');
+    const ctaPlayStoreBtn = document.getElementById('ctaPlayStoreBtn');
     const toast = document.getElementById('toast');
 
+    function showToast(e) {
+        e.preventDefault();
+        // Show toast
+        toast.classList.add('show');
+        // Hide after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     if (playStoreBtn && toast) {
-        playStoreBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+        playStoreBtn.addEventListener('click', showToast);
+    }
 
-            // Show toast
-            toast.classList.add('show');
-
-            // Hide after 3 seconds
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        });
+    if (ctaPlayStoreBtn && toast) {
+        ctaPlayStoreBtn.addEventListener('click', showToast);
     }
 
     // Slide titles
