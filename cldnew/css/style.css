@@ -6,6 +6,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Disable touch highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Allow text selection for readable content */
+p, h1, h2, h3, h4, h5, h6, span, div {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Disable selection for interactive elements */
+button, a, img, .btn, .emoji-clickable, .main-logo, .floating-emoji {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 :root {
