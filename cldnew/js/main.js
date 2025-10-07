@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (screenshot) {
             screenshot.style.animation = 'none';
             setTimeout(() => {
-                screenshot.style.animation = 'fadeInScale 0.6s ease-out forwards';
+                screenshot.style.animation = 'popInScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
             }, 10);
         }
 
@@ -60,22 +60,22 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 if (emoji.classList.contains('bg-emoji')) {
                     if (emoji.classList.contains('bg-emoji-1')) {
-                        emoji.style.animation = 'fadeInBg 1s ease-out forwards 0.1s';
+                        emoji.style.animation = 'popInBg 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.1s';
                     } else if (emoji.classList.contains('bg-emoji-2')) {
-                        emoji.style.animation = 'fadeInBg 1s ease-out forwards 0.15s';
+                        emoji.style.animation = 'popInBg 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.15s';
                     }
                 } else {
                     // Regular emojis with staggered delays
                     if (emoji.classList.contains('emoji-1')) {
-                        emoji.style.animation = 'fadeInEmoji 0.8s ease-out forwards 0.2s';
+                        emoji.style.animation = 'popInEmoji 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s';
                     } else if (emoji.classList.contains('emoji-2')) {
-                        emoji.style.animation = 'fadeInEmoji 0.8s ease-out forwards 0.3s';
+                        emoji.style.animation = 'popInEmoji 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.3s';
                     } else if (emoji.classList.contains('emoji-3')) {
-                        emoji.style.animation = 'fadeInEmoji 0.8s ease-out forwards 0.4s';
+                        emoji.style.animation = 'popInEmoji 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.4s';
                     } else if (emoji.classList.contains('emoji-4')) {
-                        emoji.style.animation = 'fadeInEmoji 0.8s ease-out forwards 0.5s';
+                        emoji.style.animation = 'popInEmoji 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.5s';
                     } else if (emoji.classList.contains('emoji-5')) {
-                        emoji.style.animation = 'fadeInEmoji 0.8s ease-out forwards 0.6s';
+                        emoji.style.animation = 'popInEmoji 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.6s';
                     }
                 }
             }, 10);
@@ -185,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
     allEmojis.forEach(emoji => {
         // Generate random rotation between -45 and 45 degrees
         const randomRotation = (Math.random() * 90) - 45;
-        // Apply initial rotation
-        emoji.style.transform = `rotate(${randomRotation}deg)`;
+        // Apply rotation using CSS custom property so it doesn't conflict with animation
+        emoji.style.setProperty('--emoji-rotation', `${randomRotation}deg`);
     });
 
 });
