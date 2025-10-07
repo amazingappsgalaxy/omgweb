@@ -484,7 +484,7 @@ body {
     z-index: 2;
 }
 
-/* Navigation - Positioned at container edges */
+/* Navigation - Positioned at screen edges for desktop */
 .hero-slider-section .swiper-button-prev,
 .hero-slider-section .swiper-button-next {
     color: var(--amber) !important;
@@ -498,6 +498,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
+    transition: opacity 0.3s ease;
 }
 
 .hero-slider-section .swiper-button-prev {
@@ -697,20 +698,23 @@ body {
     /* Stack layout on mobile */
     .hero-container {
         flex-direction: column;
-        padding: 100px 25px 100px;
-        gap: 40px;
+        padding: 120px 30px 60px;
+        gap: 50px;
         justify-content: center;
     }
 
     .hero-text {
         max-width: 100%;
+        min-width: unset;
         text-align: center;
         order: 2;
+        flex: unset;
     }
 
     .hero-title {
-        font-size: 32px;
-        margin-bottom: 25px;
+        font-size: 30px;
+        margin-bottom: 30px;
+        line-height: 1.2;
     }
 
     .hero-buttons {
@@ -719,51 +723,183 @@ body {
     }
 
     .btn {
-        padding: 15px 32px;
-        font-size: 15px;
+        padding: 16px 36px;
+        font-size: 16px;
     }
 
     /* Visual slider on mobile */
     .hero-visual-wrapper {
         order: 1;
-        height: auto;
+        height: 660px;
         width: 100%;
+        max-width: 100%;
+        flex: unset;
+        padding-top: 80px;
+        margin-top: 20px;
+        min-height: unset;
     }
 
     .slide-visual {
-        height: auto;
+        height: 100%;
     }
 
     .slide-screenshot {
+        max-height: 636px;
         height: auto;
-        width: 70%;
-        max-width: 320px;
+        width: auto;
+        max-width: 360px;
     }
 
-    /* Emojis - only 2 emojis on mobile */
-    .emoji-1 {
+    /* Background emojis - smaller and more subtle on mobile */
+    .bg-emoji {
+        opacity: 0.25;
+        filter: blur(6px);
+    }
+
+    .bg-emoji-1 {
         top: 5%;
-        left: 2%;
-        width: 45px;
-        height: 45px;
+        left: -35%;
+        width: 200px;
+        height: 200px;
     }
 
-    .emoji-2 {
+    .bg-emoji-2 {
+        bottom: 0%;
+        right: -25%;
+        width: 188px;
+        height: 188px;
+    }
+
+    /* Mobile emoji positioning - much larger sizes (25% increase) */
+    /* Slide 1 emojis */
+    [data-swiper-slide-index="0"] .emoji-1 {
+        top: -5%;
+        left: -8%;
+        width: 150px;
+        height: 150px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-2 {
+        top: 10%;
+        right: -12%;
+        width: 131px;
+        height: 131px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-3 {
+        bottom: 25%;
+        left: -10%;
+        width: 140px;
+        height: 140px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-4 {
+        bottom: -3%;
+        right: -8%;
+        width: 181px;
+        height: 181px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-5 {
         display: none;
     }
 
-    .emoji-3 {
+    /* Slide 2 emojis */
+    [data-swiper-slide-index="1"] .emoji-1 {
+        top: -3%;
+        right: -10%;
+        width: 140px;
+        height: 140px;
+    }
+
+    [data-swiper-slide-index="1"] .emoji-2 {
+        top: 8%;
+        left: -12%;
+        width: 160px;
+        height: 160px;
+    }
+
+    [data-swiper-slide-index="1"] .emoji-3 {
+        bottom: 30%;
+        left: -8%;
+        width: 148px;
+        height: 148px;
+    }
+
+    [data-swiper-slide-index="1"] .emoji-4 {
+        bottom: -5%;
+        left: -14%;
+        width: 194px;
+        height: 194px;
+    }
+
+    [data-swiper-slide-index="1"] .emoji-5 {
         display: none;
     }
 
-    .emoji-4 {
-        bottom: 5%;
-        right: 2%;
-        width: 60px;
-        height: 60px;
+    /* Slide 3 emojis */
+    [data-swiper-slide-index="2"] .emoji-1 {
+        top: 0%;
+        left: -12%;
+        width: 154px;
+        height: 154px;
     }
 
-    .emoji-5 {
+    [data-swiper-slide-index="2"] .emoji-2 {
+        top: 22%;
+        right: -8%;
+        width: 125px;
+        height: 125px;
+    }
+
+    [data-swiper-slide-index="2"] .emoji-3 {
+        bottom: -6%;
+        right: -15%;
+        width: 188px;
+        height: 188px;
+    }
+
+    [data-swiper-slide-index="2"] .emoji-4 {
+        bottom: 28%;
+        left: -5%;
+        width: 166px;
+        height: 166px;
+    }
+
+    [data-swiper-slide-index="2"] .emoji-5 {
+        display: none;
+    }
+
+    /* Slide 4 emojis */
+    [data-swiper-slide-index="3"] .emoji-1 {
+        bottom: 12%;
+        left: -10%;
+        width: 171px;
+        height: 171px;
+    }
+
+    [data-swiper-slide-index="3"] .emoji-2 {
+        top: 35%;
+        right: -14%;
+        width: 145px;
+        height: 145px;
+    }
+
+    [data-swiper-slide-index="3"] .emoji-3 {
+        top: 3%;
+        right: -6%;
+        width: 133px;
+        height: 133px;
+    }
+
+    [data-swiper-slide-index="3"] .emoji-4 {
+        top: -4%;
+        left: -7%;
+        width: 148px;
+        height: 148px;
+    }
+
+    [data-swiper-slide-index="3"] .emoji-5 {
         display: none;
     }
 
@@ -771,14 +907,15 @@ body {
     .hero-slider-section .swiper-button-next {
         width: 50px !important;
         height: 50px !important;
+        position: absolute;
     }
 
     .hero-slider-section .swiper-button-prev {
-        left: 20px;
+        left: 5px;
     }
 
     .hero-slider-section .swiper-button-next {
-        right: 20px;
+        right: 5px;
     }
 
     .swiper-button-prev::after,
@@ -797,30 +934,67 @@ body {
 
 @media (max-width: 480px) {
     .hero-container {
-        padding: 90px 15px 90px;
+        padding: 100px 20px 50px;
     }
 
     .hero-title {
-        font-size: 26px;
+        font-size: 28px;
     }
 
     .btn {
-        padding: 13px 28px;
-        font-size: 14px;
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+
+    .hero-visual-wrapper {
+        height: 576px;
     }
 
     .slide-screenshot {
-        width: 75%;
-        max-width: 280px;
+        max-height: 552px;
+        max-width: 312px;
     }
 
-    .emoji-1 {
-        width: 40px;
-        height: 40px;
+    /* Larger emojis on very small screens (25% increase) */
+    [data-swiper-slide-index="0"] .emoji-1,
+    [data-swiper-slide-index="1"] .emoji-1,
+    [data-swiper-slide-index="2"] .emoji-1,
+    [data-swiper-slide-index="3"] .emoji-1 {
+        width: 88px;
+        height: 88px;
     }
 
-    .emoji-4 {
-        width: 50px;
-        height: 50px;
+    [data-swiper-slide-index="0"] .emoji-2,
+    [data-swiper-slide-index="1"] .emoji-2,
+    [data-swiper-slide-index="2"] .emoji-2,
+    [data-swiper-slide-index="3"] .emoji-2 {
+        width: 78px;
+        height: 78px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-3,
+    [data-swiper-slide-index="1"] .emoji-3,
+    [data-swiper-slide-index="2"] .emoji-3,
+    [data-swiper-slide-index="3"] .emoji-3 {
+        width: 83px;
+        height: 83px;
+    }
+
+    [data-swiper-slide-index="0"] .emoji-4,
+    [data-swiper-slide-index="1"] .emoji-4,
+    [data-swiper-slide-index="2"] .emoji-4,
+    [data-swiper-slide-index="3"] .emoji-4 {
+        width: 106px;
+        height: 106px;
+    }
+
+    .bg-emoji-1 {
+        width: 175px;
+        height: 175px;
+    }
+
+    .bg-emoji-2 {
+        width: 163px;
+        height: 163px;
     }
 }

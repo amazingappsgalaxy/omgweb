@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Slide titles
     const titles = [
-        'Play any videos natively',
+        'Grab any video on a website and play it natively',
         'First mobile browser to have extension support',
         'Built-in video player for the smoothest experience',
         'Block annoying ads with just a click'
@@ -144,5 +144,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     console.log('OMG Browser - Slider initialized ✓');
+
+    // Hide/show navigation buttons based on scroll position (desktop only)
+    const heroSection = document.querySelector('.hero-slider-section');
+    const navButtons = document.querySelectorAll('.hero-slider-section .swiper-button-prev, .hero-slider-section .swiper-button-next');
+
+    if (heroSection && navButtons.length > 0) {
+        window.addEventListener('scroll', function() {
+            // Only apply this behavior on desktop (width > 768px)
+            if (window.innerWidth > 768) {
+                const heroRect = heroSection.getBoundingClientRect();
+                const isHeroInView = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+
+                navButtons.forEach(btn => {
+                    if (isHeroInView) {
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'auto';
+                    } else {
+                        btn.style.opacity = '0';
+                        btn.style.pointerEvents = 'none';
+                    }
+                });
+            } else {
+                // On mobile, always show buttons
+                navButtons.forEach(btn => {
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                });
+            }
+        });
+    }
+
+    // ============================================
+    // Random Emoji Tilts
+    // ============================================
+
+    // Get all emojis and add random tilts (max 45 degrees)
+    const allEmojis = document.querySelectorAll('.floating-emoji');
+
+    allEmojis.forEach(emoji => {
+        // Generate random rotation between -45 and 45 degrees
+        const randomRotation = (Math.random() * 90) - 45;
+        // Apply initial rotation
+        emoji.style.transform = `rotate(${randomRotation}deg)`;
+    });
 
 });
