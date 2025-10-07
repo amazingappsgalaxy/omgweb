@@ -123,11 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Loop
         loop: true,
 
-        // Autoplay
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
+        // Autoplay - DISABLED FOR TESTING
+        autoplay: false,
 
         // Pagination
         pagination: {
@@ -252,5 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     featureIcons.forEach(icon => {
         observer.observe(icon);
     });
+
+    // Emoji Rain handled in js/emoji-rain.js
 
 });
