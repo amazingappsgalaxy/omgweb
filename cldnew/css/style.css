@@ -1067,10 +1067,8 @@ body {
 
 @media (max-width: 600px) {
     .features-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 400px;
-        margin: 0 auto;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 }
 
@@ -1340,20 +1338,30 @@ body {
     }
 
     .features-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 400px;
-        margin: 0 auto;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 
     .feature-card {
-        padding: 30px 25px;
+        padding: 30px 20px;
+    }
+
+    .feature-icon {
+        font-size: 48px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     .hero-container {
-        padding: 100px 20px 50px;
+        padding: 260px 20px 50px;
     }
 
     .hero-title {

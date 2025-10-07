@@ -150,7 +150,7 @@
         logoWrapper.appendChild(wave);
 
         // Logo morphs through different shapes
-        logo.animate([
+        const logoAnim = logo.animate([
             {
                 transform: 'scale(1) rotate(0deg)',
                 borderRadius: '0%',
@@ -177,12 +177,20 @@
             {
                 transform: 'scale(1) rotate(360deg)',
                 borderRadius: '0%',
-                filter: 'hue-rotate(360deg) brightness(1)'
+                filter: 'hue-rotate(0deg) brightness(1)'
             }
         ], {
             duration: 1500,
-            easing: 'ease-in-out'
+            easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+            fill: 'forwards'
         });
+
+        // Clean reset when animation completes
+        logoAnim.onfinish = () => {
+            logo.style.transform = '';
+            logo.style.borderRadius = '';
+            logo.style.filter = '';
+        };
 
         // Wave expands and rotates
         wave.animate([
@@ -195,26 +203,39 @@
 
         // Rays pulse with colors
         if (rays) {
-            rays.animate([
+            const raysAnim = rays.animate([
                 { filter: 'hue-rotate(0deg) brightness(1)', opacity: '0.6' },
-                { filter: 'hue-rotate(360deg) brightness(1.5)', opacity: '1' }
+                { filter: 'hue-rotate(360deg) brightness(1.5)', opacity: '1' },
+                { filter: 'hue-rotate(0deg) brightness(1)', opacity: '0.6' }
             ], {
                 duration: 1500,
-                easing: 'linear'
+                easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+                fill: 'forwards'
             });
+
+            raysAnim.onfinish = () => {
+                rays.style.filter = '';
+                rays.style.opacity = '';
+            };
         }
 
         // Rings pulse in sequence
         orbitRings.forEach((ring, i) => {
             setTimeout(() => {
-                ring.animate([
+                const ringAnim = ring.animate([
                     { transform: 'scale(1)', opacity: '0.3' },
                     { transform: 'scale(1.8)', opacity: '0.8' },
                     { transform: 'scale(1)', opacity: '0.3' }
                 ], {
                     duration: 600,
-                    easing: 'ease-in-out'
+                    easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+                    fill: 'forwards'
                 });
+
+                ringAnim.onfinish = () => {
+                    ring.style.transform = '';
+                    ring.style.opacity = '';
+                };
             }, i * 150);
         });
 
