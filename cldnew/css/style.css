@@ -586,7 +586,7 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
 }
 
@@ -1058,6 +1058,20 @@ body {
         padding: 14px 28px;
         font-size: 14px;
     }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
 }
 
 /* ============================================
@@ -1321,12 +1335,19 @@ body {
     }
 
     .features-section {
-        padding-top: 50px;
+        padding-top: 160px;
+        padding-bottom: 60px;
     }
 
     .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        padding: 30px 25px;
     }
 }
 
