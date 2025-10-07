@@ -1117,6 +1117,10 @@ body {
         font-size: 32px;
     }
 
+    .features-section {
+        padding-top: 160px;
+    }
+
     .features-grid {
         grid-template-columns: 1fr;
     }
@@ -1186,5 +1190,202 @@ body {
     .bg-emoji-2 {
         width: 163px;
         height: 163px;
+    }
+}
+
+/* ============================================
+   INSTALLATION GUIDE SECTION
+   ============================================ */
+
+.install-section {
+    padding: 100px 40px;
+    background: var(--black);
+}
+
+.install-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-subheading {
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-dim);
+    margin-bottom: 60px;
+    margin-top: -40px;
+}
+
+.install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.install-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.install-step {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background: var(--gray);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.install-step:hover {
+    transform: translateX(10px);
+    border-color: rgba(251, 191, 36, 0.3);
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.15);
+}
+
+.step-number {
+    min-width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--amber) 0%, #f59e0b 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--black);
+    flex-shrink: 0;
+}
+
+.step-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.step-content p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.install-tip {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(251, 191, 36, 0.05);
+    border-left: 4px solid var(--amber);
+    border-radius: 12px;
+    margin-top: 8px;
+}
+
+.tip-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.install-tip p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.install-tip strong {
+    color: var(--amber);
+}
+
+.install-video {
+    position: sticky;
+    top: 100px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--gray);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-caption {
+    text-align: center;
+    margin-top: 16px;
+    color: var(--text-dim);
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Installation Section Responsive */
+@media (max-width: 1024px) {
+    .install-grid {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .install-section {
+        padding: 80px 30px;
+    }
+
+    .install-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .install-video {
+        position: relative;
+        top: 0;
+    }
+
+    .install-step {
+        padding: 24px;
+    }
+
+    .section-subheading {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .install-section {
+        padding: 60px 20px;
+    }
+
+    .install-step {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .step-number {
+        margin: 0 auto;
+    }
+
+    .install-tip {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .step-content h3 {
+        font-size: 18px;
+    }
+
+    .step-content p {
+        font-size: 14px;
     }
 }
