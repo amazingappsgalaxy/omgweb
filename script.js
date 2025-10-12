@@ -38,13 +38,13 @@ class PremiumAppV2 {
                 id: "azanime",
                 name: "A-Z Anime",
                 description: "Simple anime extension app with both Sub & Dub anime. Watch shows for free with in-built video player and other features coming soon.",
-                logo: "img/Untitled.jpg",
+                logo: "img/Untitled.webp",
                 screenshots: [
-                    "img/thumb1%20Large.jpeg",
-                    "img/thumb2%20Large.jpeg",
-                    "img/thumb3%20Large.jpeg",
-                    "img/thumb4%20Large.jpeg",
-                    "img/thumb5%20Large.jpeg"
+                    "img/thumb1%20Large.webp",
+                    "img/thumb2%20Large.webp",
+                    "img/thumb3%20Large.webp",
+                    "img/thumb4%20Large.webp",
+                    "img/thumb5%20Large.webp"
                 ],
                 category: "anime",
                 hasCarousel: true
@@ -53,9 +53,9 @@ class PremiumAppV2 {
                 id: "aiart",
                 name: "AI Art Generator",
                 description: "Free online AI image generator from text",
-                logo: "img/dea9a36c-4228-48ba-ae70-3ab6fa30b323-0%20Small.jpeg",
+                logo: "img/dea9a36c-4228-48ba-ae70-3ab6fa30b323-0%20Small.webp",
                 screenshots: [
-                    "img/image%20Medium.jpeg"
+                    "img/image%20Medium.webp"
                 ],
                 category: "ai",
                 hasCarousel: true
@@ -64,9 +64,9 @@ class PremiumAppV2 {
                 id: "relaxme",
                 name: "Relaxing Background Music",
                 description: "A simple relaxing music and noise generator",
-                logo: "img/dc7b3f97-82ee-4bd6-a1c9-46af471e4736-0%20Small.jpeg",
+                logo: "img/dc7b3f97-82ee-4bd6-a1c9-46af471e4736-0%20Small.webp",
                 screenshots: [
-                    "img/ios-11-aura-silver-granite-apple-ipad-pro-stock-3840x2160-749%20Medium.jpeg"
+                    "img/ios-11-aura-silver-granite-apple-ipad-pro-stock-3840x2160-749%20Medium.webp"
                 ],
                 category: "entertainment",
                 hasCarousel: true
@@ -75,9 +75,9 @@ class PremiumAppV2 {
                 id: "autocorrect",
                 name: "Text Auto-Correct",
                 description: "A simple tool designed to find spelling, as well as basic grammar and stylistic mistakes, in English texts.",
-                logo: "img/Untitled%20Small.jpeg",
+                logo: "img/Untitled%20Small.webp",
                 screenshots: [
-                    "img/dac90ed58e891dfa416cd1298f09159c.jpg"
+                    "img/dac90ed58e891dfa416cd1298f09159c.webp"
                 ],
                 category: "productivity",
                 hasCarousel: true
