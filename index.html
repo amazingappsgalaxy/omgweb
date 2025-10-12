@@ -25,7 +25,7 @@
                 <img src="img/app/logo icon.webp" alt="OMG Browser" class="header-logo">
                 <span class="header-title">OMG Browser</span>
             </div>
-            <a href="#" class="header-download-btn">Download</a>
+            <a href="https://s3.tebi.io/omg/apk/omgbrowser_1.apk" class="header-download-btn" id="headerDownloadBtn">Download</a>
         </div>
     </header>
 
@@ -37,7 +37,7 @@
             <div class="hero-text">
                 <h1 class="hero-title" id="heroTitle">Grab any video on a website and play it natively</h1>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Download APK</a>
+                    <a href="https://s3.tebi.io/omg/apk/omgbrowser_1.apk" class="btn btn-primary" id="downloadApkBtn">Download APK</a>
                     <a href="#" class="btn btn-secondary" id="playStoreBtn">Google Play Store</a>
                 </div>
             </div>
@@ -290,7 +290,7 @@
             </div>
 
             <div class="download-cta-buttons">
-                <a href="#download" class="btn btn-primary">Get it Now</a>
+                <a href="https://s3.tebi.io/omg/apk/omgbrowser_1.apk" class="btn btn-primary" id="ctaDownloadBtn">Get it Now</a>
             </div>
         </div>
         <div class="divspace divspace-2xl"></div>
@@ -299,10 +299,16 @@
     <!-- Spacer -->
     <div class="divspace divspace-lg"></div>
 
-    <!-- Toast Notification -->
+    <!-- Toast Notification for Play Store -->
     <div id="toast" class="toast">
         <span>🚀</span>
         <p>Soon to be available on Google Play Store!</p>
+    </div>
+
+    <!-- Toast Notification for APK Download -->
+    <div id="downloadToast" class="toast download-toast">
+        <span>📥</span>
+        <p>Your APK download has started!</p>
     </div>
 
     <!-- Footer -->

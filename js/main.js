@@ -30,6 +30,39 @@ document.addEventListener('DOMContentLoaded', function() {
         ctaPlayStoreBtn.addEventListener('click', showToast);
     }
 
+    // ============================================
+    // APK Download Buttons - Download Toast Notification
+    // ============================================
+
+    const downloadApkBtn = document.getElementById('downloadApkBtn');
+    const headerDownloadBtn = document.getElementById('headerDownloadBtn');
+    const ctaDownloadBtn = document.getElementById('ctaDownloadBtn');
+    const downloadToast = document.getElementById('downloadToast');
+
+    function showDownloadToast(e) {
+        // Don't prevent default - allow download to proceed
+        // Show toast
+        if (downloadToast) {
+            downloadToast.classList.add('show');
+            // Hide after 4 seconds
+            setTimeout(() => {
+                downloadToast.classList.remove('show');
+            }, 4000);
+        }
+    }
+
+    if (downloadApkBtn && downloadToast) {
+        downloadApkBtn.addEventListener('click', showDownloadToast);
+    }
+
+    if (headerDownloadBtn && downloadToast) {
+        headerDownloadBtn.addEventListener('click', showDownloadToast);
+    }
+
+    if (ctaDownloadBtn && downloadToast) {
+        ctaDownloadBtn.addEventListener('click', showDownloadToast);
+    }
+
     // Slide titles
     const titles = [
         'Grab any video on a website and play it natively',

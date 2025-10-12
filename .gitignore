@@ -24,6 +24,9 @@ yarn-error.log*
 *.tmp
 *.temp
 
+# APK files directory
+apks/
+
 # AI Assistant configurations
 .trae/
 .clinerules/byterover-rules.md
